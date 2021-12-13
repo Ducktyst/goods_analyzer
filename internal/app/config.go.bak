@@ -1,0 +1,37 @@
+package app
+
+import (
+	"context"
+	"crypto/tls"
+	"crypto/x509"
+	"fmt"
+	"github.com/go-pg/pg/v9"
+	"gitlab.protek.ru/protek/zdravcity/services/lib/common/core"
+	"io/ioutil"
+)
+
+type Config struct {
+	core.Config `mapstructure:",squash"`
+
+	GrpcServer core.Server
+	Database   struct {
+		user string
+		pass string
+		host string
+		port int
+		dbname string
+	}
+	Services   struct {
+		Bitrix struct {
+			URL            string
+			AgentID        string
+			AgentCode      string
+			CFClientID     string
+			CFClientSecret string
+		}
+	}
+}
+
+func (db *DB) connect() {
+	db.DB = pg.Connect(db.conf.DB)
+}

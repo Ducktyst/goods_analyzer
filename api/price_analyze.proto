@@ -1,0 +1,93 @@
+syntax = "proto3";
+
+package api;
+
+//import "google/protobuf/timestamp.proto";
+import "third_party/api/annotations.proto";
+//import "protoc-gen-openapi2/options/annotations.proto";
+
+
+option go_package = "/api;api";
+
+service PriceAnalyze {
+  // список товаров с фильтром по категорией
+  rpc GetProductList(ProductListRequest) returns (ProductListResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/products"
+    };
+  }
+  // список категорий
+  rpc GetCategoryList(CategoryListRequest) returns (CategoryListResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/categories"
+    };
+  }
+  rpc GetProductsFilter(GetProductsFilterRequest) returns (GetProductsFilterResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/filters"
+    };
+  }
+  rpc AddProductsFilter(AddProductsFilterRequest) returns (AddProductsFilterResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/filters"
+    };
+  }
+}
+
+message ProductListRequest {
+  oneof category_id {
+    // id в категории в каталоге 2.0
+    int32 id = 1;
+    // id в категории в старом каталоге
+    int32 old_id = 2;
+  }
+//  int32 page = 3;
+//  int32 per_page = 4;
+}
+
+message Product {
+  string id = 1;
+  // название
+  string name = 2;
+  // информация о бренде
+//  ProductBrand brand = 3;*/
+//  // информация о производителе
+//  ProductProducer producer = 4;
+//  // описания
+//  ProductInstruction instruction = 5;
+//  // символьный код (ссылка)
+//  string code = 6;
+//  // дата создания
+//  google.protobuf.Timestamp created_at = 7;
+//  // дата изменения
+//  google.protobuf.Timestamp updated_at = 8;
+//  // краткое описание
+//  string short_desc = 9;
+  // атрибуты в формате code => свойство
+//  map<string, ProductAttribute> attributes = 10;
+  // ссылка
+  string url = 12;
+}
+
+message ProductListResponse {
+  // товары
+  repeated Product items = 1;
+  // всего нашлось
+  // int64 total = 2;
+}
+
+message CategoryListRequest {}
+
+message Category {
+  string name = 1;
+}
+
+message CategoryListResponse {}
+
+message GetProductsFilterRequest {}
+
+message GetProductsFilterResponse {}
+
+message AddProductsFilterRequest {}
+
+message AddProductsFilterResponse {}
