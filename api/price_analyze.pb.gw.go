@@ -2,11 +2,11 @@
 // source: api/price_analyze.proto
 
 /*
-Package price_analyzer_api is a reverse proxy.
+Package api is a reverse proxy.
 
 It translates gRPC into RESTful JSON APIs.
 */
-package price_analyzer_api
+package api
 
 import (
 	"context"
@@ -133,7 +133,7 @@ func RegisterPriceAnalyzeHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/api.PriceAnalyze/GetProductList", runtime.WithHTTPPathPattern("/price_analyzer_api/v1/products"))
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/api.PriceAnalyze/GetProductList", runtime.WithHTTPPathPattern("/api/v1/products"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -156,7 +156,7 @@ func RegisterPriceAnalyzeHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/api.PriceAnalyze/GetCategoryList", runtime.WithHTTPPathPattern("/price_analyzer_api/v1/categories"))
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/api.PriceAnalyze/GetCategoryList", runtime.WithHTTPPathPattern("/api/v1/categories"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -179,7 +179,7 @@ func RegisterPriceAnalyzeHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/api.PriceAnalyze/GetProductsFilter", runtime.WithHTTPPathPattern("/price_analyzer_api/v1/filters"))
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/api.PriceAnalyze/GetProductsFilter", runtime.WithHTTPPathPattern("/api/v1/filters"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -202,7 +202,7 @@ func RegisterPriceAnalyzeHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/api.PriceAnalyze/AddProductsFilter", runtime.WithHTTPPathPattern("/price_analyzer_api/v1/filters"))
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/api.PriceAnalyze/AddProductsFilter", runtime.WithHTTPPathPattern("/api/v1/filters"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -264,7 +264,7 @@ func RegisterPriceAnalyzeHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/api.PriceAnalyze/GetProductList", runtime.WithHTTPPathPattern("/price_analyzer_api/v1/products"))
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/api.PriceAnalyze/GetProductList", runtime.WithHTTPPathPattern("/api/v1/products"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -284,7 +284,7 @@ func RegisterPriceAnalyzeHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/api.PriceAnalyze/GetCategoryList", runtime.WithHTTPPathPattern("/price_analyzer_api/v1/categories"))
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/api.PriceAnalyze/GetCategoryList", runtime.WithHTTPPathPattern("/api/v1/categories"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -304,7 +304,7 @@ func RegisterPriceAnalyzeHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/api.PriceAnalyze/GetProductsFilter", runtime.WithHTTPPathPattern("/price_analyzer_api/v1/filters"))
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/api.PriceAnalyze/GetProductsFilter", runtime.WithHTTPPathPattern("/api/v1/filters"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -324,7 +324,7 @@ func RegisterPriceAnalyzeHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/api.PriceAnalyze/AddProductsFilter", runtime.WithHTTPPathPattern("/price_analyzer_api/v1/filters"))
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/api.PriceAnalyze/AddProductsFilter", runtime.WithHTTPPathPattern("/api/v1/filters"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -344,13 +344,13 @@ func RegisterPriceAnalyzeHandlerClient(ctx context.Context, mux *runtime.ServeMu
 }
 
 var (
-	pattern_PriceAnalyze_GetProductList_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"price_analyzer_api", "v1", "products"}, ""))
+	pattern_PriceAnalyze_GetProductList_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "products"}, ""))
 
-	pattern_PriceAnalyze_GetCategoryList_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"price_analyzer_api", "v1", "categories"}, ""))
+	pattern_PriceAnalyze_GetCategoryList_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "categories"}, ""))
 
-	pattern_PriceAnalyze_GetProductsFilter_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"price_analyzer_api", "v1", "filters"}, ""))
+	pattern_PriceAnalyze_GetProductsFilter_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "filters"}, ""))
 
-	pattern_PriceAnalyze_AddProductsFilter_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"price_analyzer_api", "v1", "filters"}, ""))
+	pattern_PriceAnalyze_AddProductsFilter_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "filters"}, ""))
 )
 
 var (

@@ -6,6 +6,7 @@ require (
 	github.com/go-pg/pg/v9 v9.2.1
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.7.1
 	github.com/jmoiron/sqlx v1.3.4
+	github.com/lib/pq v1.2.0
 	google.golang.org/genproto v0.0.0-20211129164237-f09f9a12af12
 	google.golang.org/grpc v1.42.0
 	google.golang.org/grpc/cmd/protoc-gen-go-grpc v1.1.0

@@ -3,7 +3,7 @@ package price_analyzer_api
 import (
 	"context"
 	"github.com/jmoiron/sqlx"
-	"price_analyzer_prototype/api"
+	api "price_analyzer_prototype/api"
 	"price_analyzer_prototype/internal/db"
 )
 
@@ -32,10 +32,7 @@ func (a *ProductAnalyzerAPI) GetProductList(ctx context.Context, req *api.Produc
 	}
 
 	return &api.ProductListResponse{
-		Items:                productListAPI,
-		XXX_NoUnkeyedLiteral: struct{}{},
-		XXX_unrecognized:     nil,
-		XXX_sizecache:        0,
+		Items: productListAPI,
 	}, nil
 }
 func (a *ProductAnalyzerAPI) GetCategoryList(ctx context.Context, req *api.CategoryListRequest) (*api.CategoryListResponse, error) {

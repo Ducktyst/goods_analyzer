@@ -24,4 +24,4 @@ gateway:
 		./$(PROTO_API_DIR)/price_analyze.proto
 
 migrate-run:
-	@goose --dir="deployments/migrations" postgres "postgres://postgres:password@localhost:5432/catalog?sslmode=disable" up
+	@goose --dir="deployments/migrations" postgres "postgres://postgres:password@localhost:5432/price_analyze?sslmode=disable" up

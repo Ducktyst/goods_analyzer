@@ -7,29 +7,29 @@ import "third_party/google/api/annotations.proto";
 //import "third_party/options/annotations.proto";
 //import "third_party/google/api/http.proto";
 
-option go_package = "/api;price_analyzer_api";
+option go_package = "/api;api";
 
 service PriceAnalyze {
   // список товаров с фильтром по категорией
   rpc GetProductList(ProductListRequest) returns (ProductListResponse) {
     option (google.api.http) = {
-      get: "/price_analyzer_api/v1/products"
+      get: "/api/v1/products"
     };
   }
   // список категорий
   rpc GetCategoryList(CategoryListRequest) returns (CategoryListResponse) {
     option (google.api.http) = {
-      get: "/price_analyzer_api/v1/categories"
+      get: "/api/v1/categories"
     };
   }
   rpc GetProductsFilter(GetProductsFilterRequest) returns (GetProductsFilterResponse) {
     option (google.api.http) = {
-      get: "/price_analyzer_api/v1/filters"
+      get: "/api/v1/filters"
     };
   }
   rpc AddProductsFilter(AddProductsFilterRequest) returns (AddProductsFilterResponse) {
     option (google.api.http) = {
-      post: "/price_analyzer_api/v1/filters"
+      post: "/api/v1/filters"
     };
   }
 }
