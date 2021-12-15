@@ -1,8 +1,0 @@
-module price_analyzer_prototype
-
-go 1.17
-
-require (
-	github.com/go-pg/pg/v9 v9.2.1
-	github.com/robfig/cron v1.2.0
-)

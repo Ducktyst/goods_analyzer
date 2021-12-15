@@ -5,9 +5,8 @@ import (
 	"fmt"
 	"github.com/go-pg/pg/v9"
 	"github.com/jmoiron/sqlx"
-	"log"
 	"net"
-	"price_analyzer_prototype/internal/api"
+	"price_analyzer_prototype/internal/price_analyzer_api"
 	"sync"
 	"time"
 )
@@ -15,9 +14,9 @@ import (
 type App struct {
 	config Config
 
-	productAnalyzerAPI api.ProductAnalyzerAPI
-	server *Server
-	DB     *pg.Options
+	productAnalyzerAPI price_analyzer_api.ProductAnalyzerAPI
+	server             *Server
+	DB                 *pg.Options
 }
 
 type Server struct {
@@ -70,33 +69,33 @@ func (t *Server) Serve() error {
 	return t.Server.Serve(listener)
 }
 
-func New(coreApp *core.Core, c Config) *App {
+func New(c Config) *App {
 	return &App{
-		core:   coreApp,
+		//core:   coreApp,
 		config: c,
 	}
 }
 
 func (a *App) Init() (err error) {
-	dbc := NewDB(a.config.Database)
-	err = dbc.Init()
-	if err != nil {
-		return fmt.Errorf("App.InitDB: %w", err)
-	}
-	
-	dbConf := a.config.Database
-	conn := fmt.Sprint("postgres://%s:%s@%s:%d/%s", dbConf.user, dbConf.pass, dbConf.host, dbConf.port, dbConf.dbname)
-	dbConn, err := sqlx.Connect("postgres", conn)
-    if err != nil {
-        log.Fatalln(err)
-    }
+	//dbc := NewDB(a.config.Database)
+	//err = dbc.Init()
+	//if err != nil {
+	//	return fmt.Errorf("App.InitDB: %w", err)
+	//}
+	//
+	//dbConf := a.config.Database
+	//conn := fmt.Sprint("postgres://%s:%s@%s:%d/%s", dbConf.user, dbConf.pass, dbConf.host, dbConf.port, dbConf.dbname)
+	//dbConn, err := sqlx.Connect("postgres", conn)
+	//if err != nil {
+	//    log.Fatalln(err)
+	//}
 
-	_, err = conn.Version()
-	if err != nil {
-		return fmt.Errorf("App.Db: %w", err)
-	}
+	//_, err = conn.Version()
+	//if err != nil {
+	//	return fmt.Errorf("App.Db: %w", err)
+	//}
 
-	productRepo := db.NewProductRepo(conn)
+	//productRepo := db.NewProductRepo(conn)
 
 	// a.core.RegisterShutdowner(a)
 
@@ -104,7 +103,18 @@ func (a *App) Init() (err error) {
 }
 
 func (a *App) Shutdown(context.Context) error {
-	a.planner.Stop()
+	//a.planner.Stop()
 
 	return nil
+}
+
+func NewDB(cfg Config) (*sqlx.DB, error) {
+	dbConf := cfg.Database
+	conn := fmt.Sprintf("postgres://%s:%s@%s:%d/%s", dbConf.User, dbConf.Pass, dbConf.Host, dbConf.Port, dbConf.Dbname)
+	dbConn, err := sqlx.Connect("postgres", conn)
+	if err != nil {
+		return nil, err
+	}
+
+	return dbConn, nil
 }

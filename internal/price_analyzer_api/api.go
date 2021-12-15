@@ -1,4 +1,4 @@
-package api
+package price_analyzer_api
 
 import (
 	"context"
@@ -7,17 +7,20 @@ import (
 	"price_analyzer_prototype/internal/db"
 )
 
-type ProductAnalyzerAPI struct{
-	db sqlx.DB
+// реализация PriceAnalyzeServer
+type ProductAnalyzerAPI struct {
+	api.UnimplementedPriceAnalyzeServer
+	db *sqlx.DB
 }
 
-func NewProductAnalyzerAPI() *ProductAnalyzerAPI {
-	return &ProductAnalyzerAPI{}
+func NewProductAnalyzerAPI(db *sqlx.DB) *ProductAnalyzerAPI {
+	return &ProductAnalyzerAPI{
+		db: db,
+	}
 }
 
 func (a *ProductAnalyzerAPI) GetProductList(ctx context.Context, req *api.ProductListRequest) (*api.ProductListResponse, error) {
-
-	q :=`select id, name, code, updated_at, category_id from product where is_active=true`
+	q := `select id, name, code, updated_at, category_id from product where is_active=true`
 	var productList []*db.Product
 	if err := a.db.SelectContext(ctx, productList, q); err != nil {
 		return nil, err

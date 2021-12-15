@@ -28,14 +28,14 @@ Services:
     AgentCode: "2713f1a21c844162c8ccbf60ff955ee8a564ca067354afc8027c6f858284114a949e25372df529307712b9fd615503b90a72fd387b40c09d4b6c6e3dc1cfc1a1"
     CFCLientID: "e270ececa4fbbb357bdfc6335b426189.access"
     CFClientSecret: "79b2de2d3e54f5509f5fbea515891293d0484b54309000096c170e9ec4362628"
-    URL: "https://test.zdravcity.ru/api"
+    URL: "https://test.zdravcity.ru/price_analyzer_api"
 #    URL: "https://bitrix.dev.cloud.zdravcity.ru/api"
 
 Tracing:
   Enabled: true
   ServiceName: "price_analyzer"
   AgentEndpoint: "localhost:6831"
-  CollectorEndpoint: "http://localhost:14268/api/traces"
+  CollectorEndpoint: "http://localhost:14268/price_analyzer_api/traces"
 
 TracingDetails:
   Bitrix: true
