@@ -2,7 +2,7 @@
 PROTO_API_DIR := api
 
 run:
-	@echo "Compiling"
+	@echo "Compiling & Running"
 	@go run -mod=mod  cmd/price_analyzer/main.go
 
 gen: proto gateway
@@ -23,5 +23,5 @@ gateway:
 		--grpc-gateway_opt paths=source_relative \
 		./$(PROTO_API_DIR)/price_analyze.proto
 
-migrate-run:
+migrate:
 	@goose --dir="deployments/migrations" postgres "postgres://postgres:password@localhost:5432/price_analyze?sslmode=disable" up

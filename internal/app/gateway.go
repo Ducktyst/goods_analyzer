@@ -48,8 +48,9 @@ func HTTPProxy(proxyAddr, serviceAddr string) {
 	//client := api.NewPriceAnalyzeClient(grpcConn)
 	mux := http.NewServeMux()
 
-	mux.Handle("/v1/categories", grpcGWMux)
-	mux.Handle("/v1/", grpcGWMux)
+	mux.Handle("/api/v1/products", grpcGWMux)
+	mux.Handle("/api/v1/categories", grpcGWMux)
+	mux.Handle("/api/v1/filters", grpcGWMux)
 	mux.HandleFunc("/", versionHandler)
 
 	fmt.Println("stating HTTP server at " + proxyAddr)

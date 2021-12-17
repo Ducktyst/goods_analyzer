@@ -8,12 +8,12 @@ import (
 type Product struct {
 	tableName struct{} `pg:"product,alias:t,discard_unknown_columns"`
 
-	ID         string     `pg:"id,pk,type:int"`
-	Name       *string    `pg:"name"`
-	Code       string     `pg:"code,use_zero"`
-	UpdatedAt  *time.Time `pg:"updated_at"`
-	CategoryID *int       `pg:"category_id"`
-	IsActive   bool       `pg:"is_active,use_zero"`
+	ID         string     `pg:"id,pk,type:int" db:"id"`
+	Name       *string    `pg:"name" db:"name"`
+	Code       string     `pg:"code,use_zero" db:"code"`
+	UpdatedAt  *time.Time `pg:"updated_at" db:"updated_at"`
+	CategoryID *int       `pg:"category_id" db:"category_id"`
+	IsActive   bool       `pg:"is_active,use_zero" db:"is_active"`
 
 	//Brand       *Brand       `pg:"fk:brand_id"`
 	Category *Category `pg:"fk:category_id"`
